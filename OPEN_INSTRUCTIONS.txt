@@ -38,6 +38,7 @@ To use real data:
 5. The dashboard, charts, summary, and Excel export will refresh using your uploaded file.
 
 You can also click Download Excel Template in the sidebar to get the correct format.
+That template is blank and already has the required columns set up for your real data.
 
 To stop the dashboard:
 

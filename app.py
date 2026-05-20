@@ -19,6 +19,9 @@ from analytics import (
 from config import ASSET_DIR, ERROR_LOG_FILE, REPORT_FILE, SUMMARY_FILE
 
 
+TEMPLATE_FILE = ASSET_DIR.parent / "data" / "panynj_workforce_metrics_template.xlsx"
+
+
 st.set_page_config(
     page_title="PANYNJ Port Workforce Analytics",
     page_icon="PA",
@@ -198,8 +201,8 @@ def load_dashboard_source():
         help="Uploaded files must follow the same column structure as the sample workbook.",
     )
     st.sidebar.download_button(
-        "Download Excel Template",
-        data=(ASSET_DIR.parent / "data" / "panynj_workforce_metrics.xlsx").read_bytes(),
+        "Download Blank Excel Template",
+        data=TEMPLATE_FILE.read_bytes(),
         file_name="panynj_workforce_metrics_template.xlsx",
         mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
     )

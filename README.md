@@ -102,9 +102,15 @@ Options:
 
 - Use the built-in sample workbook
 - Upload a real `.xlsx` workforce metrics workbook
-- Download the Excel template from the sidebar
+- Download the blank Excel template from the sidebar
 
 When a real workbook is uploaded, the dashboard reruns validation, KPIs, rankings, visualizations, executive summary text, and Excel export using the uploaded data.
+
+The blank template is also included at:
+
+```text
+data/panynj_workforce_metrics_template.xlsx
+```
 
 ## Dashboard Features
 
