@@ -1,0 +1,34 @@
+How to open the PANYNJ Port Workforce Analytics dashboard
+
+1. Open Terminal.
+
+2. Run this command:
+
+   cd ~/Desktop/port-authority-workforce-analytics
+
+3. Run this command:
+
+   source .venv/bin/activate
+
+4. Run this command:
+
+   streamlit run app.py
+
+5. A browser window should open automatically.
+   If it does not, copy the Local URL shown in Terminal and paste it into your browser.
+
+Example Local URL:
+
+   http://localhost:8501
+
+Important files:
+
+- app.py starts the dashboard.
+- data/panynj_workforce_metrics.xlsx is the sample workforce dataset.
+- outputs/panynj_workforce_report.xlsx is the generated Excel report.
+- outputs/executive_summary.txt is the generated leadership summary.
+- README.md has the full project overview.
+
+To stop the dashboard:
+
+Press Control + C in Terminal.
