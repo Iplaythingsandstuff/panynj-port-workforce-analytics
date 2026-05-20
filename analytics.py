@@ -50,6 +50,16 @@ def load_data(file_path=INPUT_FILE):
         return pd.DataFrame(), [f"Failed to load workbook: {exc}"]
 
 
+def load_uploaded_data(uploaded_file):
+    try:
+        if uploaded_file is None:
+            return pd.DataFrame(), ["No uploaded workbook was provided."]
+        return pd.read_excel(uploaded_file), []
+    except Exception as exc:
+        log_error(f"Failed to load uploaded workbook: {exc}")
+        return pd.DataFrame(), [f"Failed to load uploaded workbook: {exc}"]
+
+
 def validate_data(df):
     errors = []
     warnings = []

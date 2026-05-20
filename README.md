@@ -94,6 +94,18 @@ Optional columns are automatically incorporated when present:
 
 Quarter values should use the format `Q1 2025`, `Q2 2025`, and so on.
 
+## Using Real Data
+
+The dashboard includes a sidebar data source control.
+
+Options:
+
+- Use the built-in sample workbook
+- Upload a real `.xlsx` workforce metrics workbook
+- Download the Excel template from the sidebar
+
+When a real workbook is uploaded, the dashboard reruns validation, KPIs, rankings, visualizations, executive summary text, and Excel export using the uploaded data.
+
 ## Dashboard Features
 
 - Executive KPI cards for participants, completion, placement, funding, active programs, and maritime placement

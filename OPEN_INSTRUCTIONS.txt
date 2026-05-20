@@ -29,6 +29,16 @@ Important files:
 - outputs/executive_summary.txt is the generated leadership summary.
 - README.md has the full project overview.
 
+To use real data:
+
+1. Open the dashboard.
+2. In the left sidebar, find Data Source.
+3. Select Upload real data.
+4. Upload an Excel file with the required columns.
+5. The dashboard, charts, summary, and Excel export will refresh using your uploaded file.
+
+You can also click Download Excel Template in the sidebar to get the correct format.
+
 To stop the dashboard:
 
 Press Control + C in Terminal.

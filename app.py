@@ -12,6 +12,7 @@ from analytics import (
     identify_bottom_programs,
     identify_top_programs,
     load_data,
+    load_uploaded_data,
     prepare_display_tables,
     validate_data,
 )
@@ -189,6 +190,36 @@ def filter_data(df):
     return filtered
 
 
+def load_dashboard_source():
+    st.sidebar.markdown("### Data Source")
+    data_source = st.sidebar.radio(
+        "Choose workbook",
+        ["Use sample data", "Upload real data"],
+        help="Uploaded files must follow the same column structure as the sample workbook.",
+    )
+    st.sidebar.download_button(
+        "Download Excel Template",
+        data=(ASSET_DIR.parent / "data" / "panynj_workforce_metrics.xlsx").read_bytes(),
+        file_name="panynj_workforce_metrics_template.xlsx",
+        mime="application/vnd.openxmlformats-officedocument.spreadsheetml.sheet",
+    )
+
+    if data_source == "Upload real data":
+        uploaded_file = st.sidebar.file_uploader(
+            "Upload workforce metrics Excel file",
+            type=["xlsx"],
+            help="Required columns: program_name, participants, completion_rate, job_placement_rate, funding_amount, quarter.",
+        )
+        if uploaded_file is None:
+            st.info("Upload an Excel workbook in the sidebar, or switch back to sample data.")
+            st.stop()
+        raw_df, load_errors = load_uploaded_data(uploaded_file)
+        return raw_df, load_errors, uploaded_file.name
+
+    raw_df, load_errors = load_data()
+    return raw_df, load_errors, "Sample PANYNJ workforce metrics"
+
+
 def render_header():
     st.markdown(
         """
@@ -270,7 +301,7 @@ def main():
     render_header()
     render_context_strip()
 
-    raw_df, load_errors = load_data()
+    raw_df, load_errors, source_name = load_dashboard_source()
     if load_errors:
         for error in load_errors:
             st.error(error)
@@ -286,6 +317,7 @@ def main():
         st.warning(warning)
 
     df = clean_data(valid_df)
+    st.caption(f"Active data source: {source_name}")
     filtered_df = filter_data(df)
     if filtered_df.empty:
         st.warning("No records match the selected workforce analytics filters.")
