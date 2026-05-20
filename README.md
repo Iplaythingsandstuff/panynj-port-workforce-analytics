@@ -134,6 +134,28 @@ completion_rate * 0.30
 + participant_growth_score * 0.10
 ```
 
+## Metric Definitions
+
+The dashboard includes an in-app Metrics Guide explaining each statistic. The short version is below.
+
+| Statistic | How it is gathered | Why it matters |
+| --- | --- | --- |
+| Workforce Participants | Sum of `participants` across selected records | Shows the scale of the Port Department workforce pipeline. |
+| Completion Rate | Average of `completion_rate` | Indicates whether participants are successfully moving through training. |
+| TLD Placement Rate | Average of `job_placement_rate` | Measures whether workforce initiatives produce Transportation, Logistics, and Distribution employment outcomes. |
+| Funding Allocation | Sum of `funding_amount` | Shows the level of public-sector investment represented in the selected portfolio. |
+| Active Initiatives | Count of unique `program_name` values | Shows how many workforce initiatives are being monitored. |
+| Maritime Placement Rate | Average placement rate for maritime, port, terminal, or cargo-focused records | Shows whether programs are producing outcomes tied directly to port operations. |
+| Workforce Readiness Score | Weighted composite of completion, placement, credential attainment, port-related placements, and participant growth | Provides a balanced 0-100 comparison of initiative performance. |
+| Cost per Participant | `funding_amount / participants` | Helps compare funding efficiency across initiatives. |
+| Estimated Cost per Placement | Funding divided by estimated placements | Connects investment to employment outcomes. |
+| Credential Attainment | Average of `credential_earned_rate` when present | Shows whether participants are gaining recognized skills for logistics and maritime roles. |
+| Employer Partnerships | Sum of `employer_partnerships` | Indicates whether programs have the employer relationships needed for work-based learning and placement. |
+| Port-Related Placements | Sum of `port_related_job_placements` | Separates general job placement from outcomes relevant to port, freight, cargo, and logistics roles. |
+| Participant Growth | Quarter-over-quarter participant change | Shows whether workforce pipeline reach is expanding or contracting. |
+| Trend Signal | Classification of quarterly growth movement | Gives leadership a fast read on improving, stable, or declining conditions. |
+| Leadership Signal | Program ranking label based on composite score | Helps identify initiatives to scale, monitor, review, or urgently address. |
+
 ## Repository Structure
 
 ```text

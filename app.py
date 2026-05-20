@@ -268,6 +268,100 @@ def render_kpis(kpis):
     cols[5].metric("Maritime Placement Rate", f"{kpis.get('maritime_placement_rate', 0):.1f}%")
 
 
+def render_metrics_guide():
+    st.markdown('<div class="section-title">Metrics Guide</div>', unsafe_allow_html=True)
+    with st.expander("What each statistic means, how it is gathered, and why it matters", expanded=False):
+        st.markdown(
+            """
+            This dashboard uses the uploaded workforce workbook as its source of truth. Required fields
+            include program name, participants, completion rate, job placement rate, funding amount, and
+            quarter. Optional fields such as credentials, employer partnerships, county, specialization,
+            training hours, and port-related placements are used automatically when present.
+
+            **Workforce Participants**
+            Counts the number of people served by the selected workforce initiatives. It is gathered from
+            the `participants` column and summed across the selected filters. This matters because it shows
+            the scale of the Port Department's workforce pipeline and whether programs are reaching enough
+            people to support maritime, freight, terminal, logistics, and supply chain labor needs.
+
+            **Completion Rate**
+            Shows the average percentage of participants who completed a program. It is gathered from the
+            `completion_rate` column and averaged across selected records. This matters because completion
+            is an early signal of whether training is structured, accessible, and effective enough to move
+            people through the pipeline.
+
+            **TLD Placement Rate**
+            Shows the average percentage of participants placed into Transportation, Logistics, and
+            Distribution-aligned jobs. It is gathered from `job_placement_rate`. This matters because the
+            goal is not just training activity; the goal is workforce outcomes connected to real maritime,
+            freight, logistics, warehousing, trucking, rail, terminal, and supply chain employment needs.
+
+            **Funding Allocation**
+            Shows total workforce funding represented in the filtered data. It is gathered from
+            `funding_amount` and summed. This matters because leadership needs to see whether public-sector
+            investment is aligned with measurable outcomes such as completion, credentials, employer
+            partnerships, and job placement.
+
+            **Active Initiatives**
+            Counts unique workforce initiatives in the selected data. It is gathered from distinct values
+            in `program_name`. This matters because it shows the breadth of the portfolio being monitored
+            and helps compare performance across initiatives.
+
+            **Maritime Placement Rate**
+            Shows placement performance for records whose specialization references maritime, port,
+            terminal, or cargo activity. It uses `logistics_specialization` to identify relevant records
+            and averages their `job_placement_rate`. This matters because the Port Department needs a clear
+            view of whether programs are producing employment outcomes tied directly to port operations.
+
+            **Workforce Readiness Score**
+            A 0 to 100 composite score estimating how ready an initiative is to support port-relevant
+            workforce goals. It combines completion, placement, credential attainment, port-related
+            placements, and participant growth. This matters because no single metric tells the whole story;
+            readiness helps leadership compare initiatives using a balanced performance signal.
+
+            **Funding Efficiency / Cost per Participant**
+            Calculates `funding_amount / participants`. This matters because it shows how much investment
+            is required to serve each participant. It should be reviewed together with outcomes: a lower
+            cost is useful only when completion, credential, and placement results remain strong.
+
+            **Estimated Cost per Placement**
+            Estimates funding per job placement using funding divided by estimated placements
+            (`participants * job_placement_rate`). This matters because it connects dollars to employment
+            outcomes and helps identify programs that may need stronger employer partnerships or redesign.
+
+            **Credential Attainment**
+            Shows the share of participants earning a credential when `credential_earned_rate` is present.
+            This matters because credentials can demonstrate readiness for specialized maritime, logistics,
+            terminal, supply chain, trucking, rail, and warehousing roles.
+
+            **Employer Partnerships**
+            Counts employer relationships reported in `employer_partnerships`. This matters because employer
+            participation is often what converts training into interviews, work-based learning, and actual
+            placement opportunities.
+
+            **Port-Related Placements**
+            Counts placements tied directly to port, maritime, cargo, terminal, freight, logistics, or
+            supply chain roles using `port_related_job_placements`. This matters because it separates
+            general employment outcomes from outcomes that are specifically relevant to the Port Department.
+
+            **Participant Growth**
+            Compares participants quarter over quarter. This matters because growth can show expanding
+            demand, stronger outreach, or increased program capacity, while decline can flag recruitment,
+            funding, or operational concerns.
+
+            **Trend Signal**
+            Classifies quarter-over-quarter movement as High Growth, Improving, Stable, Declining, or
+            Critical Decline. This matters because executives need a fast read on whether the workforce
+            portfolio is moving in the right direction without manually interpreting every row.
+
+            **Leadership Signal**
+            Labels initiatives as STRATEGIC ASSET, HIGH PERFORMING, NEEDS REVIEW, or CRITICAL ATTENTION
+            based on composite ranking. This matters because it turns many data points into an action cue:
+            scale what works, monitor what is mixed, and review what is underperforming.
+            """
+        )
+
+
 def chart_note(text):
     st.markdown(f'<div class="chart-note">{text}</div>', unsafe_allow_html=True)
 
@@ -325,6 +419,7 @@ def main():
 
     kpis = calculate_kpis(filtered_df)
     render_kpis(kpis)
+    render_metrics_guide()
 
     st.markdown('<div class="section-title">Executive Operating View</div>', unsafe_allow_html=True)
     figures = generate_visualizations(filtered_df)
